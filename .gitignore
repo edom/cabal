@@ -59,3 +59,5 @@ register.sh
 
 # python artifacts from documentation builds
 *.pyc
+
+Session.vim
