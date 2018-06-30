@@ -208,6 +208,9 @@ import qualified IntegrationTests2
 import qualified System.Environment as Monolithic
 #endif
 
+import qualified System.Directory as Dir
+import qualified System.Environment as Env
+
 -- | Entry point
 --
 main :: IO ()
@@ -224,6 +227,15 @@ main = do
 #else
 main = main'
 #endif
+
+debug :: IO ()
+debug = do
+    home <- Env.getEnv "HOME"
+    Dir.withCurrentDirectory (home ++ "/work") $ do
+        let configFilePath = home ++ "/.cabal2/config"
+        Env.withArgs ["--config-file", configFilePath, "-j1", "new-build", "gen-site", "--verbose"] $ do
+            main
+
 
 main' :: IO ()
 main' = do
