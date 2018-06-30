@@ -434,6 +434,7 @@ displaySomeException se =
     Exception.displayException se
 #endif
 
+-- | @topHandler x@ is @x@ with some exception handling.
 topHandler :: IO a -> IO a
 topHandler prog = topHandlerWith (const $ exitWith (ExitFailure 1)) prog
 
